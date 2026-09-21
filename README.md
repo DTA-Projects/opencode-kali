@@ -15,6 +15,15 @@ Send the link ([github.com/DTA-Projects/opencode-kali](https://github.com/DTA-Pr
 
 ## Install in one command
 
+Install the prerequisites below first, then run one command to get a Kali lab with opencode and the `kali` agent.
+
+**Prerequisite installers** (install these first if you don't have them yet):
+
+- **Windows** — [WSL with WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) (Windows 10 21H2+ or Windows 11; `wsl --install` enables it — admin + one reboot)
+- **Bare metal / VM** — [a Kali Linux install](https://www.kali.org/get-kali/) (official ISO/images) or an existing Kali box
+
+Then run the one-liner for your setup:
+
 **Windows + WSL2** (PowerShell — first part needs admin, reboot once if asked):
 
 ```powershell

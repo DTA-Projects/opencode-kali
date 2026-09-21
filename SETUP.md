@@ -11,6 +11,15 @@ Run [opencode](https://opencode.ai) inside Kali Linux and get an AI lab partner 
 
 ## Single-command installs
 
+Install the prerequisites below first, then run one line.
+
+**Prerequisite installers** (install these first if you don't have them yet):
+
+- **Windows** — [WSL with WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) (Windows 10 21H2+ or Windows 11; `wsl --install` enables it — admin + one reboot)
+- **Bare metal / VM** — [a Kali Linux install](https://www.kali.org/get-kali/) (official ISO/images) or an existing Kali box
+
+Then pick your path:
+
 ### 1. Windows + WSL2
 
 One line from PowerShell. The first part needs admin (reboot once if asked):
