@@ -1,0 +1,17 @@
+#!/bin/sh
+# Pre-commit hook: refuse commits that would leak private IPs, credentials,
+# or secret-bearing files into the public opencode-kali repo.
+set -u
+
+ROOT=$(git rev-parse --show-toplevel)
+STAGED=$(git diff --cached --name-only --diff-filter=ACM)
+
+if [ -n "$STAGED" ]; then
+  if ! sh "$ROOT/hooks/scan.sh" $STAGED; then
+    echo "" >&2
+    echo "Sanitization check FAILED — nothing was committed." >&2
+    echo "Mask/remove the flagged content (see matches above), stage, and retry." >&2
+    exit 1
+  fi
+fi
+exit 0

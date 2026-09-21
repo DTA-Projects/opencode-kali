@@ -1,0 +1,14 @@
+name: sanitize
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  sanitize:
+    name: sanitize
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan for unsanitized IPs / credentials / secret files
+        run: sh hooks/scan.sh

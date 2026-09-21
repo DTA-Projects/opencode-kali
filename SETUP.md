@@ -84,9 +84,9 @@ OPENCODE_KALI_MINIMAL=1 INSTALL_GH=1 curl -fsSL https://raw.githubusercontent.co
 
 ## Documenting homelab improvements
 
-Kali-related homelab work gets documented in this repo's [`homelab/`](homelab/) folder — one short write-up per improvement (new lab VM, safer networking between WSL Kali and the lab, tooling upgrades, ...). See [`homelab/README.md`](homelab/README.md) for the conventions and start from [`homelab/_TEMPLATE.md`](homelab/_TEMPLATE.md).
+Kali-related homelab work gets documented in this repo's [`homelab/`](homelab/) folder as replicable tutorials — one short write-up per improvement (new lab VM, safer networking between WSL Kali and the lab, tooling upgrades, ...). See [`homelab/README.md`](homelab/README.md) for the conventions and start from [`homelab/_TEMPLATE.md`](homelab/_TEMPLATE.md). The first one is [`homelab/lab-01-kali-wsl-opencode.md`](homelab/lab-01-kali-wsl-opencode.md).
 
-This is a **public** repo: keep write-ups secret-free — no real credentials, sanitize IPs and hostnames.
+This is a **public** repo, and sanitization is **enforced**: every commit runs [`hooks/scan.sh`](hooks/scan.sh) via the [pre-commit hook](hooks/pre-commit) (install once: `bash hooks/install-hooks.sh`) and again in CI on every push. It blocks private IPs, credential shapes, and secret-bearing filenames; documentation ranges (`192.0.2.x`, `198.51.100.x`, `203.0.113.x`) are allowed. Run `sh hooks/scan.sh` to check by hand.
 
 ## Legal
 

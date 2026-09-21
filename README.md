@@ -76,8 +76,13 @@ After it finishes: `opencode auth login`, then `opencode` and pick the **kali** 
 | `scripts/kali-opencode-install.sh` | The single-command installer. Idempotent, detects WSL vs native/VM, installs tools + opencode + the agent for the right user. |
 | `agent/kali.md` | The offensive-security agent (installed into `~/.config/opencode/agent/`). |
 | `SETUP.md` | The full setup guide — all three install paths, options, first-run, gotchas. |
-| `homelab/README.md` | Conventions for documenting Kali-related homelab improvements. |
-| `homelab/_TEMPLATE.md` | Starter template for a new improvement write-up. |
+| `homelab/README.md` | Conventions + sanitization policy for documenting Kali labs. |
+| `homelab/_TEMPLATE.md` | Starter template for a new lab tutorial. |
+| `homelab/lab-01-kali-wsl-opencode.md` | First tutorial — stands up the reference lab on Windows/WSL2. |
+| `hooks/scan.sh` | Sanitization scanner — private IPs, credential shapes, secret files. |
+| `hooks/pre-commit`, `hooks/install-hooks.sh` | Run the scanner automatically on every commit (`bash hooks/install-hooks.sh`). |
+| `.github/workflows/sanitize.yml` | CI check — runs the same scanner on every push/PR. |
+| `.gitattributes` | Pins shell scripts to LF so hooks run on every OS. |
 | `LICENSE` | MIT. |
 
 ## Manual quick start
@@ -138,9 +143,19 @@ Example prompts to try:
 
 ## Documenting homelab improvements
 
-Kali-related homelab work (new lab VM, networking between WSL Kali and the lab, tooling upgrades) gets written up in [`homelab/`](homelab/) — one short file per improvement, start from `_TEMPLATE.md`. Each write-up: goal, setup, verified commands, verification, gotchas. This keeps the "how it works" knowledge in the repo so future-you (or a friend) can rebuild it.
+Kali-related homelab work (new lab VM, networking between WSL Kali and the lab, tooling upgrades) gets written up in [`homelab/`](homelab/) — one short tutorial per improvement, start from `_TEMPLATE.md`. Each write-up: goal, setup, verified commands, verification, gotchas. This keeps the "how it works" knowledge in the repo so future-you (or a friend) can rebuild it. The first one is [`homelab/lab-01-kali-wsl-opencode.md`](homelab/lab-01-kali-wsl-opencode.md).
 
 ## Security
+
+### Sanitization is enforced, not optional
+
+Every commit is scanned by [`hooks/scan.sh`](hooks/scan.sh) — locally via the [pre-commit hook](hooks/pre-commit) (install once per clone: `bash hooks/install-hooks.sh`) and again in CI on every push ([`.github/workflows/sanitize.yml`](.github/workflows/sanitize.yml)). The scanner rejects:
+
+- **Private / non-public IPv4** — RFC1918 (`10.x`, `172.16–31.x`, `192.168.x`) and CGNAT (`100.64–127.x`). Documentation ranges (`192.0.2.x`, `198.51.100.x`, `203.0.113.x`) and masked forms like `172.x` are allowed, so tutorials stay realistic.
+- **Credential shapes** — GitHub/AWS/OpenAI/Slack/Google tokens, private-key headers, bearer strings, and secret-style `key = value` assignments.
+- **Secret-bearing filenames** — `.env`, `*.pem`, `*.key`, `*.p12`, `*.pcap`, `id_rsa`, and friends.
+
+Run it yourself any time: `sh hooks/scan.sh` (whole repo) or `sh hooks/scan.sh path/to/file`.
 
 - **No secrets in this repo, ever.** No credentials, tokens, keys, real IPs, or identifying hostnames. Use documentation ranges (`192.0.2.x`, `198.51.100.x`) or masked notation in write-ups.
 - The installer stores nothing of yours: it downloads public artifacts and writes to normal user locations.
