@@ -34,32 +34,31 @@ After it finishes: `opencode auth login`, then `opencode` and pick the **kali** 
 ## How it works
 
 ```
-������������Ŀ      ���������������������������������������������������Ŀ
-�  You ask    �      �                    opencode (CLI + AI)                �
-�  "scan my   �      �                                                    �
-�   lab VM"   �      �   agent/kali.md  (which agent, its rules, methods) �
-���������������      �  ��������������������������������������������������Ŀ �
-       �            �  �  The kali agent knows:                         � �
-       �            �  �   �  its job (offensive-security lab partner)  � �
-       �            �  �   �  authorization rules (scope first)         � �
-       �            �  �   �  the environment (WSL NAT, sudo for raw    � �
-       �            �  �   �   sockets, headless CLI)                   � �
-       �            �  �   �  the methodology (phases, tool choice,     � �
-       �            �  �   �   where findings go)                       � �
-       �            �  �  ������������������������������������������������  �
-       �            �                 �                                   �
-       �            �                 v  (Bash tool)                       �
-       �            �  ���������������������������Ŀ                      �
-       �            �  �  Kali's own toolset runs:   �                    �
-       �            �  �  nmap, msfconsole, hashcat, �                    �
-       �            �  �  gobuster, responder, ...   �                    �
-       �            �  �������������������������������                      �
-       �            �                 �                                   �
-       �            �   "Target 192.0.2.10: ports 22, 80 open —        �
-       �            �    Apache 2.4.49 (RCE CVE-2021-41773), here's    �
-       �            �    the exploit path against your lab VM..."      �
-       �            ��������������������������������������������������������
-       �
+┌──────────────┐      ┌────────────────────────────────────────────────────────┐
+│  You ask     │      │   opencode (CLI + AI)                                  │
+│  "scan my    │      │                                                        │
+│   lab VM"    │      │   agent/kali.md  (which agent, its rules, methods)     │
+└──────────────┘      │  ┌────────────────────────────────────────────┐        │
+       │              │  │  The kali agent knows:                     │        │
+       │              │  │   •  its job (offensive-security lab partner)│      │
+       │              │  │   •  authorization rules (scope first)     │        │
+       │              │  │   •  the environment (WSL NAT, sudo for raw│        │
+       │              │  │      sockets, headless CLI)                │        │
+       │              │  │   •  the methodology (phases, tool choice, │        │
+       │              │  │      where findings go)                    │        │
+       │              │  └────────────────────────────────────────────┘        │
+       │              │                 v  (Bash tool)                         │
+       │              │  ┌─────────────────────────────┐                       │
+       │              │  │  Kali's own toolset runs:   │                       │
+       │              │  │  nmap, msfconsole, hashcat, │                       │
+       │              │  │  gobuster, responder, ...   │                       │
+       │              │  └─────────────────────────────┘                       │
+       │              │                 │                                      │
+       │              │   "Target 192.0.2.10: ports 22, 80 open —              │
+       │              │    Apache 2.4.49 (RCE CVE-2021-41773), here's          │
+       │              │    the exploit path against your lab VM..."            │
+       │              └────────────────────────────────────────────────────────┘
+       │
        v
   Findings land in ~/labs/<lab-name>/ and homelab/ docs
 ```
@@ -174,3 +173,5 @@ Built in a single session from a real desktop homelab:
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+In plain English: use this freely — copy it, change it, build on it, even sell it. The one condition: if you redistribute the code (or a substantial part of it), keep the copyright notice and license text so the original credit follows it. There's no warranty — it's provided "as is", so test before you trust it with anything important.
