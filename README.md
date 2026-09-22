@@ -9,7 +9,7 @@ This repository is a working, documented example of how I run an AI lab partner 
 - **homelab improvement docs** — a convention for writing up Kali-related homelab work with a starter template
 - **secret-free by design** — no credentials, no real addresses, nothing personal in this repo (see [Security](#security))
 
-Send the link ([github.com/DTA-Projects/opencode-kali](https://github.com/DTA-Projects/opencode-kali)) to a friend and they can stand up their own lab in one command.
+Send the link ([github.com/DTA-Projects/opencode-kali](https://github.com/DTA-Projects/opencode-kali)) to a friend and they can setup up their own lab in one command.
 
 ---
 
