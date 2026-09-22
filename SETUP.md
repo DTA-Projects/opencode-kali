@@ -15,8 +15,8 @@ Install the prerequisites below first, then run one line.
 
 **Prerequisite installers** (install these first if you don't have them yet):
 
-- **Windows** — [WSL with WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) (Windows 10 21H2+ or Windows 11; `wsl --install` enables it — admin + one reboot)
-- **Bare metal / VM** — [a Kali Linux install](https://www.kali.org/get-kali/) (official ISO/images) or an existing Kali box
+- [Install WSL with WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) (Windows 10 21H2+ or Windows 11; `wsl --install` enables it — admin + one reboot)
+- [Install Kali Linux](https://www.kali.org/get-kali/) (bare metal / VM — official ISO/images) or use an existing Kali box
 
 Then pick your path:
 
